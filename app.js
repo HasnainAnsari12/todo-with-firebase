@@ -106,24 +106,31 @@ function deleteTodo(elem) {
 }
 
 function createUI(todoValue, id) {
-    const todoUI = `
-    <li id=${id} class="list-group-item d-flex align-items-center justify-content-between">
-    ${todoValue}
- 
-    <div>
-         <button class="btn btn-info" id="editBtn" >EDIT</button>
-         <button class="btn btn-danger" id="deleteBtn" >DEL</button>
-     </div>
-     </li>
- `
-     ulParent.innerHTML += todoUI
- 
-     const editBtn = document.querySelector("#editBtn")
-     const deleteBtn = document.querySelector("#deleteBtn")
- 
- 
-     editBtn.addEventListener("click",editTodo)
-     deleteBtn.addEventListener("click",deleteTodo)
+    var liElement = document.createElement("li")
+    liElement.id = id
+    liElement.innerHTML = todoValue
+    liElement.className = "list-group-item d-flex align-items-center justify-content-between"
+
+    var div = document.createElement("div")
+    var editBtn = document.createElement("button")
+    var deleteBtn = document.createElement("button")
+    editBtn.innerHTML = "EDIT"
+    editBtn.addEventListener("click", editTodo)
+    deleteBtn.innerHTML = "DELETE"
+    deleteBtn.addEventListener("click", deleteTodo)
+
+    editBtn.className = "btn btn-info"
+    deleteBtn.className = "btn btn-danger"
+
+    div.appendChild(editBtn)
+    div.appendChild(deleteBtn)
+
+    liElement.appendChild(div)
+    ulParent.appendChild(liElement)
+
+
+
+
  
          
  }
